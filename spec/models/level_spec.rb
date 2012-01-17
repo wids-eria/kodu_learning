@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe Level do
+  it { should have_attached_file(:level_file) }
+  it { should validate_attachment_presence(:level_file) }
+
   describe 'name' do
     let(:level) { Level.new }
 

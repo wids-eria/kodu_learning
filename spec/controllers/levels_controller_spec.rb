@@ -24,7 +24,10 @@ describe LevelsController do
   # Level. As you add validations to Level, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { name: 'My Awesome Level' }
+    {
+      name: 'My Awesome Level',
+      level_file_file_name: 'my_awesome_file_name'
+    }
   end
 
   # This should return the minimal set of values that should be in the session
