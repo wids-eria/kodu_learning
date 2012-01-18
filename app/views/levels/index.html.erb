@@ -14,6 +14,8 @@
     <td><%= link_to 'Show', level %></td>
     <td><%= link_to 'Edit', edit_level_path(level) %></td>
     <td><%= link_to 'Destroy', level, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Download', level.level_file.url %></td>
+
   </tr>
 <% end %>
 </table>
