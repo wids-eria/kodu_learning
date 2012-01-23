@@ -1,4 +1,10 @@
 KoduLearning::Application.routes.draw do
+  get "user/sign_in"
+
+  get "user/sign_out"
+
+  devise_for :users
+
   resources :levels
 
   # The priority is based upon order of creation:
@@ -50,7 +56,7 @@ KoduLearning::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'levels#index'
+  root :to => '#index'
 
   # See how all your routes lay out with "rake routes"
 
