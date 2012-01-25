@@ -1,7 +1,8 @@
 class LevelsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /levels
   # GET /levels.json
-  before_filter :authenticate_user!
   def index
     @levels = Level.all
 

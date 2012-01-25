@@ -32,4 +32,5 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   config.include Paperclip::Shoulda::Matchers
+  config.include Devise::TestHelpers, :type => :controller
 end
