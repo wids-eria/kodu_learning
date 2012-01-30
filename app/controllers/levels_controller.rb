@@ -43,7 +43,7 @@ class LevelsController < ApplicationController
   # POST /levels.json
   def create
     @level = Level.new(params[:level])
-
+    @level.user = current_user
     respond_to do |format|
       if @level.save
         format.html { redirect_to @level, notice: 'Level was successfully created.' }

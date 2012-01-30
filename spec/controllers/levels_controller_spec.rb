@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe LevelsController do
+  let(:user) {User.create(:email => 'test@test.com', :password => 'Passw0rd')}
   before do
-    user = User.new :email => 'test@somewhere.com', :password => 'password'
-    user.save!
     @request.env["devise.mapping"] = Devise.mappings[:user]
     sign_in :user, user
   end
@@ -45,10 +44,11 @@ describe LevelsController do
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new Level" do
+      it "creates a new Level and assigns it to logged in user" do
         expect {
           post :create, {:level => valid_attributes}
         }.to change(Level, :count).by(1)
+        assigns(:level).user.should == user
       end
 
       it "assigns a newly created level as @level" do
