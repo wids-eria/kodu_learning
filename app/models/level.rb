@@ -1,5 +1,6 @@
 class Level < ActiveRecord::Base
   belongs_to :user
+  belongs_to :assignment
   has_attached_file :level_file
 
   validates_presence_of :name

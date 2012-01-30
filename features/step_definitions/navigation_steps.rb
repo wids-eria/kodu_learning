@@ -1,4 +1,4 @@
-When /^I am on the levels page$/ do
+When /^I visit the levels page$/ do
   visit("/")
 end
 

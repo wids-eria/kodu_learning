@@ -1,5 +1,7 @@
 KoduLearning::Application.routes.draw do
   
+  resources :assignments
+
   devise_for :users
 
   resources :levels
