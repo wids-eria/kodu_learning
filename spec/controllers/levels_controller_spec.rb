@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe LevelsController do
+  render_views
+
   let(:user) {User.create(:email => 'test@test.com', :password => 'Passw0rd')}
   let(:assignment) { Factory(:assignment) }
   before do
@@ -137,7 +139,7 @@ describe LevelsController do
     it "redirects to the levels list" do
       level = Level.create! valid_attributes
       delete :destroy, :assignment_id => assignment.id, :id => level.to_param
-      response.should redirect_to(levels_url)
+      response.should redirect_to(assignment_levels_url(assignment))
     end
   end
 

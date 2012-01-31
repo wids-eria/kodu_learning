@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe AssignmentsController do
+  render_views
 
   let(:user) { Factory.create :teacher }
   let(:student) { Factory.create :student }

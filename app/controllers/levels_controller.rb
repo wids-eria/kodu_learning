@@ -45,6 +45,7 @@ class LevelsController < ApplicationController
   def create
     @level = Level.new(params[:level])
     @level.user = current_user
+    @level.assignment = @assignment
     respond_to do |format|
       if @level.save
         format.html { redirect_to @level, notice: 'Level was successfully created.' }
