@@ -46,9 +46,9 @@ namespace :deploy do
     task t, :roles => :app do ; end
   end
 
-  task :cold do       # Overriding the default deploy:cold
-    update
-    load_schema       # My own step, replacing migrations.
-    start
-  end
+  #task :cold do       # Overriding the default deploy:cold
+  #  update
+  #  load_schema       # My own step, replacing migrations.
+  #  start
+  #end
 end
