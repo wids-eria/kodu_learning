@@ -6,20 +6,28 @@
     <th>Description</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @assignments.each do |assignment| %>
   <tr>
-    <td><%= assignment.title %></td>
+    <td><%= link_to assignment.title, assignment %></td>
     <td><%= assignment.description %></td>
-    <td><%= link_to 'Show', assignment %></td>
-    <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
-    <td><%= link_to 'Destroy', assignment, confirm: 'Are you sure?', method: :delete %></td>
+    <td>
+      <% if can? :edit, assignment %>
+        <%= link_to 'Edit', edit_assignment_path(assignment) %>
+      <% end %>
+    </td>
+    <td>
+      <% if can? :destroy, assignment %>
+        <%= link_to 'Destroy', assignment, confirm: 'Are you sure?', method: :delete %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Assignment', new_assignment_path %>
+<% if can? :create, Assignment %>
+  <%= link_to 'New Assignment', new_assignment_path %>
+<% end %>

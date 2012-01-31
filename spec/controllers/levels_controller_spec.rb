@@ -5,7 +5,7 @@ describe LevelsController do
 
   let(:user) {User.create(:email => 'test@test.com', :password => 'Passw0rd')}
   let(:assignment) { Factory(:assignment) }
-  let!(:level) { Factory(:level) }
+  let!(:level) { Factory(:level, :assignment => assignment) }
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     sign_in :user, user
@@ -61,7 +61,7 @@ describe LevelsController do
 
       it "redirects to the created level" do
         post :create, :assignment_id => assignment.id, :level => valid_attributes
-        response.should redirect_to(Level.last)
+        response.should redirect_to(assignment_url(assignment))
       end
     end
 
@@ -130,7 +130,7 @@ describe LevelsController do
 
     it "redirects to the levels list" do
       delete :destroy, :assignment_id => assignment.id, :id => level.to_param
-      response.should redirect_to(assignment_levels_url(assignment))
+      response.should redirect_to(assignment_url(assignment))
     end
   end
 end

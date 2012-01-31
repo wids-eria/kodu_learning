@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :assignment do
-    title "MyString"
+    sequence(:title)  {|n| "assignment#{n}" }
     description "MyText"
   end
 end

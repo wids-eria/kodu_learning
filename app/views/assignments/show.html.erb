@@ -10,6 +10,22 @@
   <%= @assignment.description %>
 </p>
 
+<p>
+  <b>Levels</b>
 
-<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
+  <ul>
+    <% @assignment.levels.each do |level| %>
+      <li>
+        <%= link_to level.name, level.level_file.url %>
+        <%= level.user.email %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to 'Upload Level', new_assignment_level_path(@assignment) %>
+</p>
+
+
+<% if can? :edit, @assignment %>
+  <%= link_to 'Edit', edit_assignment_path(@assignment) %>
+<% end %>
 <%= link_to 'Back', assignments_path %>

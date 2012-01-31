@@ -1,11 +1,11 @@
 class LevelsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_assignment
+  before_filter :find_assignment, :except => [:show]
 
   # GET /levels
   # GET /levels.json
   def index
-    @levels = Level.all
+    @levels = @assignment.levels.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -48,7 +48,7 @@ class LevelsController < ApplicationController
     @level.assignment = @assignment
     respond_to do |format|
       if @level.save
-        format.html { redirect_to @level, notice: 'Level was successfully created.' }
+        format.html { redirect_to @assignment, notice: 'Level was successfully created.' }
         format.json { render json: @level, status: :created, location: @level }
       else
         format.html { render action: "new" }
@@ -80,7 +80,7 @@ class LevelsController < ApplicationController
     @level.destroy
 
     respond_to do |format|
-      format.html { redirect_to assignment_levels_url(@assignment) }
+      format.html { redirect_to @assignment }
       format.json { head :ok }
     end
   end

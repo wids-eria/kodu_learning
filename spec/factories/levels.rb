@@ -5,5 +5,6 @@ FactoryGirl.define do
     sequence(:name)  {|n| "level#{n}" }
     level_file { Rack::Test::UploadedFile.new(Rails.root.join('features', 'input_files', 'example_level.kodu'), 'application/octet-stream') }
     user
+    assignment
   end
 end

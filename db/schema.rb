@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131162127) do
+ActiveRecord::Schema.define(:version => 20120131210555) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20120131162127) do
     t.integer  "level_file_file_size"
     t.datetime "level_file_updated_at"
     t.integer  "user_id"
+    t.integer  "assignment_id"
   end
 
   create_table "users", :force => true do |t|
