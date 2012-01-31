@@ -11,9 +11,8 @@
 <% @levels.each do |level| %>
   <tr>
     <td><%= level.name %></td>
+    <td><%= level.user.first_name %> <% level.user.last_name %>
     <td><%= link_to 'Show', level %></td>
-    <td><%= link_to 'Edit', edit_assignment_level_path(@assignment, level) %></td>
-    <td><%= link_to 'Destroy', assignment_level_path(@assignment, level), confirm: 'Are you sure?', method: :delete %></td>
     <td><%= link_to 'Download', level.level_file.url %></td>
 
   </tr>

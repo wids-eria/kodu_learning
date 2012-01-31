@@ -5,6 +5,7 @@ describe LevelsController do
 
   let(:user) {User.create(:email => 'test@test.com', :password => 'Passw0rd')}
   let(:assignment) { Factory(:assignment) }
+  let!(:level) { Factory(:level) }
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     sign_in :user, user
@@ -16,7 +17,6 @@ describe LevelsController do
 
   describe "GET index" do
     it "assigns all levels as @levels" do
-      level = Level.create! valid_attributes
       get :index, :assignment_id => assignment.id
       assigns(:levels).should eq([level])
     end
@@ -24,7 +24,6 @@ describe LevelsController do
 
   describe "GET show" do
     it "assigns the requested level as @level" do
-      level = Level.create! valid_attributes
       get :show, :assignment_id => assignment.id, :id => level.to_param
       assigns(:level).should eq(level)
     end
@@ -39,7 +38,6 @@ describe LevelsController do
 
   describe "GET edit" do
     it "assigns the requested level as @level" do
-      level = Level.create! valid_attributes
       get :edit, :assignment_id => assignment.id, :id => level.to_param
       assigns(:level).should eq(level)
     end
@@ -87,7 +85,6 @@ describe LevelsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested level" do
-        level = Level.create! valid_attributes
         # Assuming there are no other levels in the database, this
         # specifies that the Level created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -97,13 +94,11 @@ describe LevelsController do
       end
 
       it "assigns the requested level as @level" do
-        level = Level.create! valid_attributes
         put :update, :assignment_id => assignment.id, :id => level.to_param, :level => valid_attributes
         assigns(:level).should eq(level)
       end
 
       it "redirects to the level" do
-        level = Level.create! valid_attributes
         put :update, :assignment_id => assignment.id, :id => level.to_param, :level => valid_attributes
         response.should redirect_to(level)
       end
@@ -111,7 +106,6 @@ describe LevelsController do
 
     describe "with invalid params" do
       it "assigns the level as @level" do
-        level = Level.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Level.any_instance.stub(:save).and_return(false)
         put :update, :assignment_id => assignment.id, :id => level.to_param, :level => {}
@@ -119,7 +113,6 @@ describe LevelsController do
       end
 
       it "re-renders the 'edit' template" do
-        level = Level.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Level.any_instance.stub(:save).and_return(false)
         put :update, :assignment_id => assignment.id, :id => level.to_param, :level => {}
@@ -130,17 +123,14 @@ describe LevelsController do
 
   describe "DELETE destroy" do
     it "destroys the requested level" do
-      level = Level.create! valid_attributes
       expect {
         delete :destroy, :assignment_id => assignment.id, :id => level.to_param
       }.to change(Level, :count).by(-1)
     end
 
     it "redirects to the levels list" do
-      level = Level.create! valid_attributes
       delete :destroy, :assignment_id => assignment.id, :id => level.to_param
       response.should redirect_to(assignment_levels_url(assignment))
     end
   end
-
 end
