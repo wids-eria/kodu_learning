@@ -1,10 +1,16 @@
 KoduLearning::Application.routes.draw do
   
-  resources :assignments
+  resources :assignments do
+    resources :levels
+  end
 
   devise_for :users
 
-  resources :levels
+  resources :levels, :only => [:my_levels, :show] do
+    collection do
+      get :mine
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

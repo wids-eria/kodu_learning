@@ -1,4 +1,6 @@
 class AssignmentsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /assignments
   # GET /assignments.json
   def index
@@ -35,12 +37,15 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1/edit
   def edit
     @assignment = Assignment.find(params[:id])
+    authorize! :manage, @assignment
   end
 
   # POST /assignments
   # POST /assignments.json
   def create
     @assignment = Assignment.new(params[:assignment])
+    authorize! :manage, @assignment
+
     @assignment.user = current_user
 
     respond_to do |format|
@@ -58,6 +63,7 @@ class AssignmentsController < ApplicationController
   # PUT /assignments/1.json
   def update
     @assignment = Assignment.find(params[:id])
+    authorize! :manage, @assignment
 
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
@@ -74,6 +80,8 @@ class AssignmentsController < ApplicationController
   # DELETE /assignments/1.json
   def destroy
     @assignment = Assignment.find(params[:id])
+    authorize! :manage, @assignment
+
     @assignment.destroy
 
     respond_to do |format|

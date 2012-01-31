@@ -1,5 +1,6 @@
 class LevelsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :find_assignment
 
   # GET /levels
   # GET /levels.json
@@ -78,8 +79,14 @@ class LevelsController < ApplicationController
     @level.destroy
 
     respond_to do |format|
-      format.html { redirect_to levels_url }
+      format.html { redirect_to assignment_levels_url(@assignment) }
       format.json { head :ok }
     end
+  end
+
+  private
+
+  def find_assignment
+    @assignment = Assignment.find params[:assignment_id]
   end
 end

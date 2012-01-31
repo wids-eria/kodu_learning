@@ -2,16 +2,17 @@ require 'spec_helper'
 
 describe AssignmentsController do
 
-  let(:user) {User.create(:email => 'test@test.com', :password => 'Passw0rd')}
+  let(:user) { Factory.create :teacher }
+  let(:student) { Factory.create :student }
 
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     sign_in :user, user
   end
 
-def valid_attributes
-    {title: 'First Assignment'}
-end
+  def valid_attributes
+      {title: 'First Assignment'}
+  end
 
   describe "GET index" do
     it "assigns all assignments as @assignments" do
@@ -61,6 +62,13 @@ end
       it "redirects to the created assignment" do
         post :create, {:assignment => valid_attributes}
         response.should redirect_to(Assignment.last)
+      end
+
+      it "doesnt create if not a teacher" do
+        sign_in :user, student
+        expect {
+          post :create, :assignment => Factory.attributes_for(:assignment)
+        }.to raise_error(CanCan::AccessDenied)
       end
     end
 

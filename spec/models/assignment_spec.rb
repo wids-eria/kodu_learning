@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Assignment do
-describe 'title' do
+  describe 'title' do
     let(:assignment) {Assignment.new }
 
     it 'should be required' do
