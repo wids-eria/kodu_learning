@@ -15,6 +15,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'capistrano'
 
 group :development, :test do
   gem 'rspec-rails'
