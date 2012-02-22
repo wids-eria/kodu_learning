@@ -14,4 +14,13 @@ describe User do
       user.teacher?.should be false
     end
   end
+
+  describe '#gamer_tag' do
+    it "should be unique" do
+      user = Factory :user
+      user2 = Factory.build :user, gamer_tag: user.gamer_tag
+      user2.valid?
+      user2.errors[:gamer_tag].should_not be_empty
+    end
+  end
 end
