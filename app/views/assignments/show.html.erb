@@ -16,6 +16,7 @@
   <table class="table table-striped">
     <thead>
       <th>Name</th>
+      <th>Description</th>
       <th>Uploader</th>
     </thead>
     <tbody>
@@ -23,6 +24,9 @@
         <tr>
           <td>
             <%= link_to level.name, level.level_file.url %>
+          </td>
+          <td>
+            <%= level.description %>
           </td>
           <td>
             <%= avatar_for(level.user) %>
