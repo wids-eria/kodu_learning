@@ -1,6 +1,6 @@
 <%= form_for [@assignment, @level], html: {multipart: true} do |f| %>
   <% if @level.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-error">
       <h2><%= pluralize(@level.errors.count, "error") %> prohibited this level from being saved:</h2>
 
       <ul>
@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :level_file %><br />
+    <%= f.label :level_file %>
     <%= f.file_field :level_file %>
   </div>
 
