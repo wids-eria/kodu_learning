@@ -98,6 +98,7 @@ class AssignmentsController < ApplicationController
     if current_user.gamer_tag.blank?
       current_user.valid?
       respond_to do |format|
+        flash[:alert] = "Please fill in your gamer tag."
         format.html { redirect_to edit_user_registration_path }
         format.json { render json: current_user.errors, status: :unprocessable_entity, location: edit_user_registration_path }
       end
