@@ -1,5 +1,6 @@
 class AssignmentsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :must_assign_gamer_tag
 
   # GET /assignments
   # GET /assignments.json
@@ -87,6 +88,19 @@ class AssignmentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to assignments_url }
       format.json { head :ok }
+    end
+  end
+
+
+  private
+
+  def must_assign_gamer_tag
+    if current_user.gamer_tag.blank?
+      current_user.valid?
+      respond_to do |format|
+        format.html { redirect_to edit_user_registration_path }
+        format.json { render json: current_user.errors, status: :unprocessable_entity, location: edit_user_registration_path }
+      end
     end
   end
 end

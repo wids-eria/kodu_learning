@@ -3,7 +3,7 @@ require 'spec_helper'
 describe LevelsController do
   render_views
 
-  let(:user) {User.create(:email => 'test@test.com', :password => 'Passw0rd')}
+  let(:user) { Factory :user }
   let(:assignment) { Factory(:assignment) }
   let!(:level) { Factory(:level, :assignment => assignment) }
   before do

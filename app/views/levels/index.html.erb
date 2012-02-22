@@ -11,7 +11,7 @@
 <% @levels.each do |level| %>
   <tr>
     <td><%= level.name %></td>
-    <td><%= level.user.first_name %> <% level.user.last_name %></td>
+    <td><%= level.user.gamer_tag %></td>
     <td><%= link_to 'Download', level.level_file.url %></td>
 
   </tr>
