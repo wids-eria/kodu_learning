@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.3'
 gem 'devise'
 gem 'cancan'
+gem 'redcarpet'
 
 gem 'paperclip'
 gem 'pg'
