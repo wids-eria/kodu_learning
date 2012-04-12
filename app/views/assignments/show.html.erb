@@ -21,6 +21,7 @@
       <th>Name</th>
       <th>Description</th>
       <th>Uploader</th>
+      <th>
     </thead>
     <tbody>
       <% @assignment.levels.each do |level| %>
@@ -34,6 +35,9 @@
           <td>
             <%= avatar_for(level.user) %>
             <%= level.user.gamer_tag %>
+          </td>
+          <td>
+            <%= link_to 'Comments', level_comments_path(level) %>
           </td>
         </tr>
       <% end %>
