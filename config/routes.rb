@@ -10,6 +10,8 @@ KoduLearning::Application.routes.draw do
     collection do
       get :mine
     end
+
+    resources :comments
   end
 
   match 'awesomesauce' => 'awesome#coderwall'

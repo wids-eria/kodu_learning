@@ -7,8 +7,10 @@
 
 <p>
   <b>Description:</b>
-  <% markdown = Redcarpet::Markdown.new Redcarpet::Render::HTML %>
-  <%= markdown.render(@assignment.description).html_safe %>
+  <% if @assignment.description.present? %>
+    <% markdown = Redcarpet::Markdown.new Redcarpet::Render::HTML %>
+    <%= markdown.render(@assignment.description).html_safe %>
+  <% end %>
 </p>
 
 <p>

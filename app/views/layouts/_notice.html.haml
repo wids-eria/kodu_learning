@@ -1,4 +1,6 @@
-- if notice.present?
-  %p.alert.alert-info= notice
-- if alert.present?
-  %p.alert= alert
+- if flash[:notice].present?
+  %p.alert.alert-info
+    = flash[:notice]
+- if flash[:alert].present?
+  %p.alert
+    = flash[:alert]
