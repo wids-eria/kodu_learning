@@ -12,6 +12,8 @@ KoduLearning::Application.routes.draw do
     end
   end
 
+  match 'awesomesauce' => 'awesome#coderwall'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
