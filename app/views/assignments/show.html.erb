@@ -7,7 +7,8 @@
 
 <p>
   <b>Description:</b>
-  <%= simple_format(@assignment.description) %>
+  <% markdown = Redcarpet::Markdown.new Redcarpet::Render::HTML %>
+  <%= markdown.render(@assignment.description).html_safe %>
 </p>
 
 <p>

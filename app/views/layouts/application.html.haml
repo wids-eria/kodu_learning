@@ -9,10 +9,6 @@
   %body
     .container
       = render 'layouts/navbar'
+      = render 'layouts/notice'
 
-      - if notice.present?
-        %p.alert.alert-info= notice
-      - if alert.present?
-        %p.alert= alert
-
-      = yield
+      ~ yield
