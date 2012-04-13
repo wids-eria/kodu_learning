@@ -37,7 +37,9 @@
             <%= level.user.gamer_tag %>
           </td>
           <td>
-            <%= link_to 'Comments', level_comments_path(level) %>
+            <% if can? :read_comments, level %>
+              <%= link_to 'Comments', level_comments_path(level) %>
+            <% end %>
           </td>
         </tr>
       <% end %>

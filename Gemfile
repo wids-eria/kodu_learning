@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'capistrano'
 
 group :development, :test do
+  gem 'launchy'
   gem 'spork'
   gem 'rspec-rails'
   gem 'capybara'

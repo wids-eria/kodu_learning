@@ -24,7 +24,7 @@ Given /^I want to log in$/ do
 end
 
 Given /^I want to log in as a teacher$/ do
-  @user = Factory :user
+  @user = Factory :teacher
   visit root_path
 end
 
@@ -46,6 +46,11 @@ end
 
 Given /^I am logged in as a teacher$/ do
   step "I want to log in as a teacher"
+  step "I enter my credentials"
+end
+
+Given /^I am logged in as a student/ do
+  step "I want to log in"
   step "I enter my credentials"
 end
 

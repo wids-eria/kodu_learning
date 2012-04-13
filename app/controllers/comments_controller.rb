@@ -2,15 +2,12 @@ class CommentsController < ApplicationController
   respond_to :json, :html
   before_filter :find_level
   before_filter :find_comment, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize_comments
 
   def index
     @comments = Comment.all
 
     respond_with @comments
-  end
-
-  def show
-    respond_with @comment
   end
 
   def new
@@ -19,20 +16,11 @@ class CommentsController < ApplicationController
     respond_with @comment
   end
 
-  def edit
-    respond_with @comment
-  end
-
   def create
     @comment = Comment.new(params[:comment])
 
     @comment.save
     respond_with [@level, @comment], location: [@level, Comment]
-  end
-
-  def update
-    @comment.update_attributes(params[:comment])
-    respond_with @comment
   end
 
   def destroy
@@ -49,5 +37,9 @@ class CommentsController < ApplicationController
 
   def find_comment
     @comment = Comment.find params[:id]
+  end
+
+  def authorize_comments
+    authorize! :create_comment, @level
   end
 end
