@@ -18,6 +18,8 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(params[:comment])
+    @comment.level  = @level
+    @comment.author = current_user
 
     @comment.save
     respond_with [@level, @comment], location: [@level, Comment]

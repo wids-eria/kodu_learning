@@ -1,19 +1,28 @@
-<h1>Listing comments</h1>
+<h1>Comments</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
-    <th>Body</th>
     <th>Author</th>
+    <th>Body</th>
+    <th>When</th>
   </tr>
 
 <% @comments.each do |comment| %>
   <tr>
-    <td><%= comment.body %></td>
-    <td><%= comment.author %></td>
+    <td style="width: 20%;">
+      <%= avatar_for(comment.author) %>
+      <%= comment.author.gamer_tag %>
+    </td>
+    <td style="width: 50%;">
+      <% markdown = Redcarpet::Markdown.new Redcarpet::Render::HTML %>
+      <%= markdown.render(comment.body).html_safe %>
+    </td>
+    <td><%= time_ago_in_words(comment.created_at) %> ago</td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Comment', new_level_comment_path %>
+<%= link_to 'New Comment', new_level_comment_path, class: 'btn btn-primary' %>
+<%= link_to 'Back', assignment_path(@level.assignment), class: 'btn' %>

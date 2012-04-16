@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :comment do
     body "MyText"
-    author nil
-    level nil
+    author
+    level
   end
 end

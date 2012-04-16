@@ -38,7 +38,7 @@
           </td>
           <td>
             <% if can? :read_comments, level %>
-              <%= link_to 'Comments', level_comments_path(level) %>
+              <%= link_to 'Comments', level_comments_path(level), class: 'btn btn-info btn-mini' %>
             <% end %>
           </td>
         </tr>
