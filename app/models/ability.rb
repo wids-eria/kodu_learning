@@ -13,7 +13,7 @@ class Ability
     end
 
     if user.teacher?
-      can :manage, Assignment
+      can [:manage], [Assignment,Tag]
     else
       can :read, :all
     end

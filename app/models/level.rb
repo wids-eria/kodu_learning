@@ -3,6 +3,8 @@ class Level < ActiveRecord::Base
   belongs_to :assignment
   has_attached_file :level_file
 
+  has_and_belongs_to_many :tags
+
   validates_presence_of :name
   validates_presence_of :user
   validates_attachment_presence :level_file

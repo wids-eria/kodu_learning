@@ -16,7 +16,8 @@ class LevelsController < ApplicationController
   # GET /levels/1
   # GET /levels/1.json
   def show
-    @level = Level.find(params[:id])
+    @level = Post.find(params[:id])
+    @tags = @level.tags
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,6 +28,7 @@ class LevelsController < ApplicationController
   # GET /levels/new
   # GET /levels/new.json
   def new
+    @tags = Tag.all
     @level = Level.new
 
     respond_to do |format|
@@ -37,6 +39,7 @@ class LevelsController < ApplicationController
 
   # GET /levels/1/edit
   def edit
+    @tags = Tag.all
     @level = Level.find(params[:id])
   end
 
@@ -60,8 +63,10 @@ class LevelsController < ApplicationController
   # PUT /levels/1
   # PUT /levels/1.json
   def update
-    @level = Level.find(params[:id])
 
+    params[:level][:tag_ids] ||= []
+    @level = Level.find(params[:id])
+    
     respond_to do |format|
       if @level.update_attributes(params[:level])
         format.html { redirect_to @level, notice: 'Level was successfully updated.' }

@@ -31,3 +31,6 @@
 <% if can? :create, Assignment %>
   <%= link_to 'New Assignment', new_assignment_path, class: 'btn btn-primary' %>
 <% end %>
+<% if can? :create, Assignment %>
+  <%= link_to 'New Tag', new_tag_path, class: 'btn btn-primary' %>
+<% end %>

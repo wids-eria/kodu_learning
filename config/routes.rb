@@ -1,5 +1,7 @@
 KoduLearning::Application.routes.draw do
   
+  resources :tags
+
   resources :assignments do
     resources :levels
   end

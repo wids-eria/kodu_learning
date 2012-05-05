@@ -29,4 +29,12 @@
   <div class="actions">
     <%= f.submit class: 'btn btn-primary' %>
   </div>
+
+  <% @tags.each do |tag| %>
+    <div>
+      <%= check_box_tag 'level[tag_ids][]', tag.id, @level.tags.include?(tag) %>
+      <%= tag.name %>
+    </div>
+  <% end %>
+
 <% end %>

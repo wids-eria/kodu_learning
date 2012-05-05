@@ -30,9 +30,14 @@
             <%= link_to level.name, level.level_file.url %>
           </td>
           <td>
-            <%= level.description %>
+            <%= level.description %></br>
+             <p>
+              </br>
+              <b>Tags:</b>
+              <%= level.tags.map { |t| t.name }.join(", ") %>
+            </p>
           </td>
-          <td>
+            <td>
             <%= avatar_for(level.user) %>
             <%= level.user.gamer_tag %>
           </td>
